@@ -16,8 +16,7 @@ def save_alt(pos):
 
 def save_aug(pos):
   global augLoc
-  print("pos" + str(pos))
-  augLoc = "4"
+  print("pos: " + str(pos))
 
 def scope(save):
   diameter = 60
@@ -31,7 +30,8 @@ def scope(save):
   myCanvas.create_line(diameter, 0, 0, diameter, fill="red")
   myCanvas.pack()
 
-  pos = (frame.winfo_x(), frame.winfo_y())
+  pos = (myCanvas.winfo_rootx(), myCanvas.winfo_rooty())
+
   saveBtn = Button(prmpt, text="Save", command=lambda: save(pos))
 
   frame.pack(pady=20)

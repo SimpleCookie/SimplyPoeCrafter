@@ -1,5 +1,8 @@
 from tkinter import *
+from tkinter import ttk
 
+altLoc = None
+augLoc = None
 def setup_main_window(geo):
   mainWindow = Tk()
   mainWindow.title("Simply Crafter")
@@ -30,9 +33,9 @@ def scope(save):
   myCanvas.create_line(diameter, 0, 0, diameter, fill="red")
   myCanvas.pack()
 
-  pos = (myCanvas.winfo_rootx(), myCanvas.winfo_rooty())
+  #pos = (prmpt.winfo_x(), prmpt.winfo_y())
 
-  saveBtn = Button(prmpt, text="Save", command=lambda: save(pos))
+  saveBtn = Button(prmpt, text="Save", command=lambda: save((prmpt.winfo_x(), prmpt.winfo_y())))
 
   frame.pack(pady=20)
   saveBtn.pack()
@@ -40,21 +43,32 @@ def scope(save):
 def test_f():
   print(altLoc)
 
-altLoc = "Not set"
-augLoc = "Not set"
+WIDTH = 800
+HEIGHT = 500
+X_POS = 300
+Y_POS = 300
 
-mainWindow = setup_main_window("800x500")
-altLocLabel = Label(mainWindow, text=altLoc)
-augLocLabel = Label(mainWindow, text=augLoc)
-altBtn = Button(mainWindow, text="Configure alteration", command=lambda: scope(save_alt))
-augBtn = Button(mainWindow, text="Configure Augmentation", command=lambda: scope(save_aug))
+def main():
+  altLoc = "Not set"
+  augLoc = "Not set"
+
+  geo = f'{WIDTH}x{HEIGHT}+{X_POS}+{Y_POS}'
+  mainWindow = setup_main_window(geo)
+  altLocLabel = Label(mainWindow, text=altLoc)
+  augLocLabel = Label(mainWindow, text=augLoc)
+  altBtn = Button(mainWindow, text="Configure alteration", command=lambda: scope(save_alt))
+  augBtn = Button(mainWindow, text="Configure Augmentation", command=lambda: scope(save_aug))
 
 
 
-altBtn.pack()
-altLocLabel.pack()
+  altBtn.pack()
+  altLocLabel.pack()
 
-test = Button(mainWindow, text="test", command=test_f)
-test.pack()
+  test = Button(mainWindow, text="test", command=test_f)
+  test.pack()
 
-mainWindow.mainloop()
+  mainWindow.mainloop()
+
+
+if __name__ == "__main__":
+  main()
